@@ -37,7 +37,6 @@ class TableroBotones extends StatelessWidget {
             ),
           ],
         ),
-
         Row(
           spacing: 8.0,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -60,7 +59,6 @@ class TableroBotones extends StatelessWidget {
             ),
           ],
         ),
-
         Row(
           spacing: 8.0,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -72,6 +70,20 @@ class TableroBotones extends StatelessWidget {
             Botones(
               operador: "sqrt",
               onPressed: () => sendOperacion("sqrt", formkey),
+            ),
+          ],
+        ),
+        Row(
+          spacing: 8.0,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Botones(
+              operador: "fib",
+              onPressed: () => sendOperacion("fib", formkey),
+            ),
+            Botones(
+              operador: "par/impar",
+              onPressed: () => sendOperacion("parimpar", formkey),
             ),
           ],
         ),
