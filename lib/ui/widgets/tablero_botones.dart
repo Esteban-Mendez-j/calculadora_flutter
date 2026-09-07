@@ -75,6 +75,24 @@ class TableroBotones extends StatelessWidget {
             ),
           ],
         ),
+        Row(
+          spacing: 8.0,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Botones(
+              operador: "sin",
+              onPressed: () => sendOperacion("sin", formkey),
+            ),
+            Botones(
+              operador: "cos",
+              onPressed: () => sendOperacion("cos", formkey),
+            ),
+            Botones(
+              operador: "tan",
+              onPressed: () => sendOperacion("tan", formkey),
+            ),
+          ],
+        ),
       ],
     );
   }

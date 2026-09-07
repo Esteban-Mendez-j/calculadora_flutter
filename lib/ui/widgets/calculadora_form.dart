@@ -26,13 +26,16 @@ class CalculadoraForm extends StatelessWidget {
     final esOperacionUnitaria = [
       "sqrt",
       "log",
+      "cos",
+      "sin",  
+      "tan"
     ].contains(operacionWatch.data.operacion);
 
     return Form(
       key: _formKey,
       child: Column(
         children: [
-          if (!["sqrt", "log"].contains(operacionWatch.data.operacion))
+          if (!esOperacionUnitaria)
             TextFormField(
               controller: _controllerN1,
               keyboardType: TextInputType.number,

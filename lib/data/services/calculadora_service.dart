@@ -39,6 +39,10 @@ class CalculadoraService {
   String logaritmo(double numero1) {
     return log(numero1).toString();
   }
+  
+  double _aRadianes(double grados) {
+    return grados * (pi / 180);
+  }
 
   String validarPrimos(double numero) {
     bool esPrimo = true;
@@ -100,9 +104,30 @@ class CalculadoraService {
       case "primo":
         resultado = "${validarPrimos(n1)} y ${validarPrimos(n2)}";
         break;
+      case "cos":
+        double vCos = cos(_aRadianes(n2));
+        if (vCos.abs() < 1e-10) vCos = 0;
+        resultado = vCos.toString();
+        break;
+
+      case "sin":
+        double vSin = sin(_aRadianes(n2));
+        if (vSin.abs() < 1e-10) vSin = 0;
+        resultado = vSin.toString();
+        break;
+
+      case "tan":
+        if ((n2 % 180).abs() == 90) {
+          throw Exception("La tangente de $n2° no está definida");
+        }
+        double vTan = tan(_aRadianes(n2));
+        if (vTan.abs() < 1e-10) vTan = 0;
+        resultado = vTan.toString();
+        break;
+
       default:
         throw Exception("El operador ingresado no es valido");
-    }
+          }
 
     return resultado;
   }
