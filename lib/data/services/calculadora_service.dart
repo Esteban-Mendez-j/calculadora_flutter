@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:calculadora/data/models/calculadora.dart';
 
 class CalculadoraService {
@@ -42,28 +41,59 @@ class CalculadoraService {
 
   String validarPrimos(double numero) {
     bool esPrimo = true;
-
     if (numero < 2) esPrimo = false;
-
     if (numero != 2 && (numero % 2 == 0)) esPrimo = false;
-
     for (int i = 3; i <= sqrt(numero); i += 2) {
       if (numero % i == 0) {
         esPrimo = false;
         break;
       }
     }
-
     return esPrimo
         ? "El numero $numero es Primo"
         : "El numero $numero NO es Primo";
+  }
+
+  bool esFibonacci(double numero) {
+    if (numero < 0 || numero % 1 != 0) return false;
+
+    int n = numero.toInt();
+    int a = 0, b = 1;
+
+    if (n == 0) return true;
+
+    while (b < n) {
+      int temp = b;
+      b = a + b;
+      a = temp;
+    }
+
+    return b == n;
+  }
+
+  String validarFibonacci(double numero) {
+    if (numero % 1 != 0) {
+      return "El numero $numero no es un numero entero";
+    }
+    return esFibonacci(numero)
+        ? "El numero $numero SI esta en la lista de Fibonacci"
+        : "El numero $numero NO esta en la lista de Fibonacci";
+  }
+
+  String validarParImpar(double numero) {
+    if (numero % 1 != 0) {
+      return "El numero $numero no es un numero entero";
+    }
+    int n = numero.toInt();
+    return n % 2 == 0
+        ? "El numero $numero es Par"
+        : "El numero $numero es Impar";
   }
 
   String calcular(Calculadora calculadora) {
     if (calculadora.numero1.isNaN || calculadora.numero2.isNaN) {
       throw Exception("Complete los campos");
     }
-
     if (calculadora.operacion.isEmpty) {
       throw Exception("Seleccione el operador");
     }
@@ -99,6 +129,12 @@ class CalculadoraService {
         break;
       case "primo":
         resultado = "${validarPrimos(n1)} y ${validarPrimos(n2)}";
+        break;
+      case "fib":
+        resultado = validarFibonacci(n2);
+        break;
+      case "parimpar":
+        resultado = validarParImpar(n2);
         break;
       default:
         throw Exception("El operador ingresado no es valido");
