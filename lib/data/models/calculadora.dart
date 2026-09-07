@@ -30,7 +30,7 @@ class Calculadora {
     if (["sqrt", "log"].contains(_operacion)) {
       return "$operacion $_numero2 = $_resultado";
     }
-    if (_operacion == "primo") {
+    if (["primo", "fib", "parimpar"].contains(_operacion)) {
       return _resultado;
     }
     if (_operacion.trim().isEmpty) {
