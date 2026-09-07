@@ -19,20 +19,23 @@ class CalculadoraForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final CalculadoraViewmodel operacionWatch = context
         .watch<CalculadoraViewmodel>();
-
     final CalculadoraViewmodel calculadoraViewmodel = context
         .read<CalculadoraViewmodel>();
 
     final esOperacionUnitaria = [
       "sqrt",
       "log",
+      "fib",
+      "parimpar",
     ].contains(operacionWatch.data.operacion);
 
     return Form(
       key: _formKey,
       child: Column(
         children: [
-          if (!["sqrt", "log"].contains(operacionWatch.data.operacion))
+          if (!["sqrt", "log", "fib", "parimpar"].contains(
+            operacionWatch.data.operacion,
+          ))
             TextFormField(
               controller: _controllerN1,
               keyboardType: TextInputType.number,
@@ -97,3 +100,5 @@ class CalculadoraForm extends StatelessWidget {
     );
   }
 }
+              
+             
