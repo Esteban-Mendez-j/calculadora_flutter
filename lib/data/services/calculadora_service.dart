@@ -33,6 +33,12 @@ class CalculadoraService {
   }
 
   String potenciacion(double numero1, double numero2) {
+    if (numero1 == 0 && numero2 < 0) {
+      throw Exception("No se puede realizar esta operacion");
+    }
+    if (numero1 < 0 && (numero2 % 1 != 0)) {
+      throw Exception("No se puede realizar esta operacion");
+    }
     return pow(numero1, numero2).toString();
   }
 
@@ -52,7 +58,7 @@ class CalculadoraService {
 
   String validarPrimos(double numero) {
     bool esPrimo = true;
-    if (numero < 2) esPrimo = false;
+    if (numero < 2 || numero % 1 != 0) esPrimo = false;
     if (numero != 2 && (numero % 2 == 0)) esPrimo = false;
     for (int i = 3; i <= sqrt(numero); i += 2) {
       if (numero % i == 0) {
