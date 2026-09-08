@@ -37,6 +37,12 @@ class CalculadoraService {
   }
 
   String logaritmo(double numero1) {
+    if (numero1 < 0) {
+      throw Exception("No se puede sacarle logaritmo a numero negativos");
+    }
+    if (numero1 == 0) {
+      throw Exception("No se puede sacarle logaritmo al 0");
+    }
     return log(numero1).toString();
   }
 

@@ -58,7 +58,7 @@ class CalculadoraForm extends StatelessWidget {
                 onChanged: (value) => {
                   calculadoraViewmodel.setNumero1 = value.isEmpty
                       ? 0
-                      : double.parse(value),
+                      : double.tryParse(value) ?? 0,
                   if (_formKey.currentState!.validate())
                     calculadoraViewmodel.calcular(),
                 },
@@ -90,7 +90,7 @@ class CalculadoraForm extends StatelessWidget {
             onChanged: (value) => {
               calculadoraViewmodel.setNumero2 = value.isEmpty
                   ? 0
-                  : double.parse(value),
+                  : double.tryParse(value) ?? 0,
               if (_formKey.currentState!.validate())
                 calculadoraViewmodel.calcular(),
             },
