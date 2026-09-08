@@ -27,7 +27,7 @@ class Calculadora {
 
   @override
   String toString() {
-    if (["sqrt", "log"].contains(_operacion)) {
+    if (["sqrt", "log","sin","cos","tan"].contains(_operacion)) {
       return "$operacion $_numero2 = $_resultado";
     }
     if (["primo", "fib", "parimpar"].contains(_operacion)) {
