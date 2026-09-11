@@ -16,8 +16,13 @@ class _CalculadoraView extends State<CalculadoraView> {
   final TextEditingController _controllerN1 = TextEditingController();
   final TextEditingController _controllerN2 = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  final colorPrimario = Colors.white;
-  final colorSecundario = Colors.blue;
+
+  @override
+  void dispose() {
+    _controllerN1.dispose();
+    _controllerN2.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,41 +43,34 @@ class _CalculadoraView extends State<CalculadoraView> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: colorSecundario,
-        title: Row(
-          children: [
-            Icon(Icons.calculate, color: colorPrimario),
-            SizedBox(width: 10),
-            Text("Calculadora", style: TextStyle(color: colorPrimario)),
-          ],
-        ),
-      ),
-      body: Center(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(20),
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 600),
-            child: Column(
-              spacing: 10.0,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CalculadoraForm(
-                  formKey: formKey,
-                  controllerN1: _controllerN1,
-                  controllerN2: _controllerN2,
-                ),
-                TarjetaResultado(
-                  colorPrimario: colorPrimario,
-                  colorsecundario: colorSecundario,
-                ),
-                TableroBotones(
-                  sendOperacion: sendOperacion,
-                  formkey: formKey,
-                  limpiar: limpiar,
-                ),
-              ],
+      backgroundColor: const Color(0xFFF8FAFC),
+      body: SafeArea(
+        child: Center(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 18,
+              vertical: 16,
+            ),
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 480),
+              child: Column(
+                children: [
+                  CalculadoraForm(
+                    formKey: formKey,
+                    controllerN1: _controllerN1,
+                    controllerN2: _controllerN2,
+                  ),
+                  const SizedBox(height: 14),
+                  const TarjetaResultado(),
+                  const SizedBox(height: 16),
+                  TableroBotones(
+                    sendOperacion: sendOperacion,
+                    formkey: formKey,
+                    limpiar: limpiar,
+                  ),
+                  const SizedBox(height: 16),
+                ],
+              ),
             ),
           ),
         ),
